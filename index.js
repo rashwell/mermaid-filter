@@ -7,7 +7,7 @@ var path = require('path');
 var exec = require('child_process').execSync;
 
 var prefix="diagram";
-var outdir= "img";
+var outdir= "html/img";
 var mermaid_opts = "-v -o " + outdir;
 var cmd = "mermaid " + mermaid_opts;
 var counter = 0;
