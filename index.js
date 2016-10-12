@@ -33,7 +33,8 @@ function mermaid(type, value, format, meta) {
     //console.log(tmpfile);
     fs.writeFileSync(tmpfileObj.name, content);
     var oldPath = path.join(outdir, path.basename(tmpfileObj.name) + `.${options.format}`);
-    var newPath = path.join(linkbase, `${prefix}-${counter}.${options.format}`);
+    var newPath = path.join(outdir, `${prefix}-${counter}.${options.format}`);
+    var linkPath = path.join(linkbase, `${prefix}-${counter}.${options.format}`);
     exec(`${cmd} -w ${options.width} ${options.format==='png' ? "-p": "-s"}  ${tmpfileObj.name}`);
     //console.log(oldPath, newPath);
     fs.renameSync(oldPath, newPath);
@@ -42,7 +43,7 @@ function mermaid(type, value, format, meta) {
                     pandoc.Image(
                         ['', [], []],
                         [],
-                        [newPath, ""]
+                        [linkPath, ""]
                     )
                 ]);
 }
