@@ -37,8 +37,12 @@ function mermaid(type, value, format, meta) {
     var linkPath = path.join(linkbase, `${prefix}-${counter}.${options.format}`);
     exec(`${cmd} -w ${options.width} ${options.format==='png' ? "-p": "-s"}  ${tmpfileObj.name}`);
     //console.log(oldPath, newPath);
-    fs.renameSync(oldPath, newPath);
-    console.log(format);
+    fs.renameSync(oldPath, newPath);    
+    if (format=="pdf") {
+        return pandoc.Para([
+                pandoc.Str("<img src='"+linkPath+"'\\>")
+            ]);
+    }
     return pandoc.Para(
                 [
                     pandoc.Image(
