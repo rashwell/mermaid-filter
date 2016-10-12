@@ -38,6 +38,7 @@ function mermaid(type, value, format, meta) {
     exec(`${cmd} -w ${options.width} ${options.format==='png' ? "-p": "-s"}  ${tmpfileObj.name}`);
     //console.log(oldPath, newPath);
     fs.renameSync(oldPath, newPath);
+    console.log(format);
     return pandoc.Para(
                 [
                     pandoc.Image(
